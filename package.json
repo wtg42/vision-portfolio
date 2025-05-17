@@ -12,10 +12,18 @@
     "@astrojs/db": "^0.14.14",
     "@astrojs/node": "^9.2.1",
     "@astrojs/react": "^4.2.7",
+    "@nanostores/react": "^1.0.0",
+    "@tailwindcss/vite": "^4.1.7",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
     "astro": "^5.7.13",
+    "nanostores": "^1.0.1",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "daisyui": "^5.0.35"
   }
 }
