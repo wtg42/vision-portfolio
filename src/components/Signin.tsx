@@ -1,16 +1,24 @@
-import React from 'react'
+import React from "react";
 
-const Signin = () => {
+const SignIn = () => {
   React.useEffect(() => {
-    console.log("after mounteded....")
-  })
+    console.log("after mounteded....");
+  });
+
+  const handleClick = () => {
+    console.log("clicked");
+  };
 
   return (
     <>
-      <div className="btn btn-error">Signin</div>
+      <button
+        onClick={handleClick}
+        className="btn btn-error"
+      >
+        Signin
+      </button>
     </>
-  )
-}
+  );
+};
 
-export default Signin
-
+export default SignIn;
