@@ -1,10 +1,11 @@
+import type { ImageMetadata } from "astro";
 import React from "react";
 
 /**
  * FilmRoll 膠卷底片元件
  */
-const FilmRoll: React.FC<{ images: string[] }> = (
-  { images }: { images: string[] },
+const FilmRoll: React.FC<{ images: ImageMetadata[] }> = (
+  { images }: { images: ImageMetadata[] },
 ) => {
   const [holeCount, setHoleCount] = React.useState(0);
   const ref = React.useRef(null);
@@ -26,8 +27,9 @@ const FilmRoll: React.FC<{ images: string[] }> = (
         ref={ref}
         className="
           flex
+          flex-row
           justify-center
-          h-5
+          h-6
           bg-[#5c4033]
         "
       >
@@ -40,19 +42,31 @@ const FilmRoll: React.FC<{ images: string[] }> = (
           ))}
         </div>
       </div>
-      <div className="
-        flex
-        justify-center
-        h-32
-        bg-[#5c4033]
-      ">
+      <div
+        data-role="film-body"
+        className="
+          flex
+          flex-row
+          justify-start
+          items-center
+          h-32
+          bg-[#5c4033]
+        "
+      >
+        <div className="">
+          <img
+            src={images[0].src}
+            className="max-h-20 object-contain"
+          />
+        </div>
       </div>
       <div
         ref={ref}
         className="
           flex
+          flex-row
           justify-center
-          h-5
+          h-6
           bg-[#5c4033]
         "
       >
