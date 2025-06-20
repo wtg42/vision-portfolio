@@ -21,6 +21,15 @@ const FilmRoll: React.FC<{ images: ImageMetadata[] }> = (
 
     return () => observer.disconnect(); // 清除監聽器
   }, []);
+
+  /**
+   * 點擊圖片的顯示整張圖片
+   */
+  const handleClickImage = () => {
+    const modal = document.getElementById("show_image_modal") as HTMLDialogElement;
+    modal.showModal();
+  }
+
   return (
     <>
       <div
@@ -57,6 +66,7 @@ const FilmRoll: React.FC<{ images: ImageMetadata[] }> = (
           <img
             src={images[0].src}
             className="max-h-20 object-contain"
+            onClick={handleClickImage}
           />
         </div>
       </div>
@@ -83,6 +93,15 @@ const FilmRoll: React.FC<{ images: ImageMetadata[] }> = (
           ))}
         </div>
       </div>
+      <dialog id="show_image_modal" className="modal">
+        <div className="modal-box w-11/12 max-w-5xl">
+          <img src={images[0].src} alt="" />
+        </div>
+        <form method="dialog" className="modal-backdrop">
+          {/* if there is a button in form, it will close the modal */}
+          <button>Close</button>
+        </form>
+      </dialog>
     </>
   );
 };
