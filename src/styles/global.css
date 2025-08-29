@@ -2,4 +2,5 @@
 @plugin "@tailwindcss/typography";
 @plugin "daisyui" {
   themes: retro --default, dark --prefersdark;
+  exclude: rootscrollgutter; /* 隱藏因為顯示 modal 產生的滾動條 */
 }

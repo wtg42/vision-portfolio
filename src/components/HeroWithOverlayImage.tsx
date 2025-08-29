@@ -7,6 +7,7 @@ import coverImage from "../assets/images/DSC_1587.jpg?url";
 const HeroWithOverlayImage = () => {
   const handleClick = () => {
     console.log("Button clicked!")
+    location.href = "/gallery";
   }
 
   return (
