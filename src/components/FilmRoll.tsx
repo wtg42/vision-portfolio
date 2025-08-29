@@ -4,8 +4,8 @@ import React from "react";
 /**
  * FilmRoll 膠卷底片元件
  */
-const FilmRoll: React.FC<{ images: ImageMetadata[] }> = (
-  { images }: { images: ImageMetadata[] },
+const FilmRoll: React.FC<{ images: ImageMetadata[]; category?: string }> = (
+  { images, category }: { images: ImageMetadata[]; category?: string },
 ) => {
   const [holeCount, setHoleCount] = React.useState(0);
   const ref = React.useRef(null);
@@ -32,6 +32,9 @@ const FilmRoll: React.FC<{ images: ImageMetadata[] }> = (
 
   return (
     <>
+      {category && (
+        <h2 className="text-center text-2xl my-4">{category}</h2>
+      )}
       <div
         ref={ref}
         className="
