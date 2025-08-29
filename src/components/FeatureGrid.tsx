@@ -14,13 +14,14 @@ const FeatureGrid = () => (
     <div className="container mx-auto px-4">
       <div className="grid gap-6 md:grid-cols-3">
         {features.map((f) => (
-          <div
+          <a
             key={f.title}
-            className="p-6 text-center rounded-lg shadow bg-base-100"
+            href={`/gallery?category=${encodeURIComponent(f.title)}`}
+            className="p-6 text-center rounded-lg shadow bg-base-100 block hover:shadow-lg"
           >
             <h3 className="mb-2 text-xl font-semibold">{f.title}</h3>
             <p className="text-sm opacity-80">{f.desc}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>
