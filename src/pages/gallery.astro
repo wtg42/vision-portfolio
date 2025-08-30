@@ -12,7 +12,7 @@ const category = searchParams.get('category') ?? '';
 <Layout>
   <FilmRoll
     client:only="react"
-    images={[coverImage]}
+    images={[coverImage, coverImage]}
     category={category}
   />
 </Layout>
