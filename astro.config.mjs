@@ -5,13 +5,11 @@ import react from "@astrojs/react";
 
 import node from "@astrojs/node";
 
-import db from "@astrojs/db";
-
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), db()],
+  integrations: [react()],
 
   adapter: node({
     mode: "standalone",
