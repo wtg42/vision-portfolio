@@ -14,10 +14,11 @@
   --line: rgb(133 255 151 / 24%);
   --line-bright: rgb(167 255 178 / 52%);
   --glow: 0 0 18px rgb(111 255 133 / 16%);
-  --mono: "SFMono-Regular", "Cascadia Code", "Roboto Mono", Consolas,
-    "Liberation Mono", monospace;
+  --font-terminal: var(--font-ibm-plex-mono);
+  --font-reading: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei",
+    system-ui, sans-serif;
   color-scheme: dark;
-  font-family: var(--mono);
+  font-family: var(--font-terminal);
   font-synthesis: none;
   background: var(--ink);
 }
@@ -47,7 +48,7 @@ body {
       transparent 4px
     ),
     var(--ink);
-  font-family: var(--mono);
+  font-family: var(--font-terminal);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -90,6 +91,7 @@ button {
 }
 
 .terminal-page {
+  font-family: var(--font-terminal);
   width: min(100% - 2rem, 1480px);
   min-height: 100vh;
   margin-inline: auto;
@@ -221,7 +223,9 @@ button {
   font-weight: 500;
   letter-spacing: -0.09em;
   line-height: 0.72;
-  text-shadow: 0 0 26px rgb(124 255 143 / 18%);
+  text-shadow:
+    0 0 12px rgb(124 255 143 / 16%),
+    0 0 30px rgb(124 255 143 / 12%);
 }
 
 .hero-copy h1 span {
@@ -237,7 +241,7 @@ button {
   max-width: 37rem;
   margin: clamp(2rem, 5vw, 4.5rem) 0 1.8rem;
   color: var(--phosphor-muted);
-  font-family: var(--mono);
+  font-family: var(--font-reading);
   font-size: clamp(0.82rem, 1.4vw, 1rem);
   line-height: 2;
 }
@@ -307,6 +311,7 @@ main {
   font-weight: 400;
   letter-spacing: -0.06em;
   line-height: 1;
+  text-shadow: 0 0 16px rgb(124 255 143 / 10%);
 }
 
 .result-count {
@@ -481,6 +486,7 @@ main {
 
 .about-copy {
   color: var(--phosphor-muted);
+  font-family: var(--font-reading);
   font-size: clamp(0.78rem, 1.2vw, 0.92rem);
   line-height: 2;
 }
@@ -616,6 +622,7 @@ main {
 
 .viewer-description {
   color: var(--phosphor-muted);
+  font-family: var(--font-reading);
   font-size: 0.72rem;
   line-height: 1.8;
 }
@@ -663,6 +670,120 @@ main {
 @keyframes cursor-pulse {
   50% {
     opacity: 0;
+  }
+}
+
+@keyframes phosphor-drift {
+  from {
+    background-position:
+      0 0,
+      0 0;
+  }
+
+  to {
+    background-position:
+      120% 0,
+      0 12px;
+  }
+}
+
+@keyframes signal-drift {
+  from {
+    mask-position: 0 0;
+    -webkit-mask-position: 0 0;
+  }
+
+  to {
+    mask-position: 0 9px;
+    -webkit-mask-position: 0 9px;
+  }
+}
+
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .hero-copy h1 {
+    color: transparent;
+    background:
+      linear-gradient(
+        100deg,
+        var(--phosphor-muted) 0%,
+        var(--phosphor-bright) 38%,
+        var(--phosphor) 64%,
+        var(--phosphor-muted) 100%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgb(255 255 255 / 12%) 0,
+        rgb(255 255 255 / 12%) 1px,
+        transparent 1px,
+        transparent 4px
+      );
+    background-size:
+      180% 100%,
+      100% 12px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: phosphor-drift 14s linear infinite;
+  }
+
+  .hero-copy h1 span {
+    color: var(--ink);
+    -webkit-text-fill-color: var(--ink);
+  }
+
+  .section-heading h2,
+  .about-section h2 {
+    color: transparent;
+    background: linear-gradient(
+      105deg,
+      var(--phosphor-bright),
+      var(--phosphor-muted)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+}
+
+@supports (
+  (mask-image: linear-gradient(#000, #000)) or
+    (-webkit-mask-image: linear-gradient(#000, #000))
+) {
+  .hero-copy h1 span {
+    mask-image: repeating-linear-gradient(
+      180deg,
+      #000 0,
+      #000 5px,
+      rgb(0 0 0 / 72%) 5px,
+      rgb(0 0 0 / 72%) 6px,
+      #000 6px,
+      #000 9px
+    );
+    -webkit-mask-image: repeating-linear-gradient(
+      180deg,
+      #000 0,
+      #000 5px,
+      rgb(0 0 0 / 72%) 5px,
+      rgb(0 0 0 / 72%) 6px,
+      #000 6px,
+      #000 9px
+    );
+    mask-size: 100% 9px;
+    -webkit-mask-size: 100% 9px;
+    animation: signal-drift 18s steps(9, end) infinite;
+  }
+}
+
+@media (forced-colors: active) {
+  .hero-copy h1,
+  .hero-copy h1 span,
+  .section-heading h2,
+  .about-section h2 {
+    color: CanvasText;
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+    -webkit-text-stroke: 0;
+    mask-image: none;
+    -webkit-mask-image: none;
+    text-shadow: none;
   }
 }
 
@@ -823,5 +944,13 @@ main {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .hero-copy h1,
+  .hero-copy h1 span {
+    animation: none !important;
+    background-position: 50% 0;
+    mask-position: 0 0;
+    -webkit-mask-position: 0 0;
   }
 }
