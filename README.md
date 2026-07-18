@@ -1,4 +1,4 @@
-# Astro Starter Kit: Basics
+# Vision Portfolio
 
 ```sh
 npm create astro@latest -- --template basics
@@ -43,6 +43,8 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Deployment
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site is prepared for static deployment on Cloudflare Pages. See the
+[Cloudflare Pages runbook](docs/deployment/cloudflare-pages.md) for build,
+preview, production, acceptance, and rollback procedures.

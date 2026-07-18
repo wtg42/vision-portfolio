@@ -1,18 +1,34 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import FilmRoll from '../components/FilmRoll';
-import coverImage from "../assets/images/DSC_1587.jpg";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-const { searchParams } = Astro.url;
-const category = searchParams.get('category') ?? '';
+const title = "Redirecting to Vision Portfolio";
 ---
 
-<Layout>
-  <FilmRoll
-    client:only="react"
-    images={[coverImage, coverImage]}
-    category={category}
-  />
-</Layout>
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" content="0;url=/#works" />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const labels = {
+          landscape: "Landscape",
+          portraits: "Portraits",
+          urban: "Urban",
+        };
+        const requested = new URLSearchParams(window.location.search)
+          .get("category")
+          ?.toLowerCase();
+        const category = requested && labels[requested];
+        const target = category
+          ? `/?category=${encodeURIComponent(category)}#works`
+          : "/#works";
+        window.location.replace(target);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>正在前往 <a href="/#works">Vision Portfolio</a>…</p>
+  </body>
+</html>
