@@ -17,7 +17,7 @@ runtime binding, secret, or Codex Sites configuration is required.
 | Output directory | `dist` |
 | Node.js | `22.16.0` from `.node-version` |
 | Runtime variables | None |
-| Production hostname | `https://vision-portfolio.pages.dev` (assigned; awaiting accepted `main` release) |
+| Production hostname | `https://vision-portfolio.pages.dev` |
 
 Cloudflare's Git integration builds `main` for production and eligible
 non-production branches for previews. Pull requests should merge only after
@@ -84,6 +84,16 @@ and updates the production `pages.dev` alias only if that build succeeds.
 Repeat the critical preview checks against the final production hostname and
 replace the pending hostname in this document.
 
+The first accepted production release is Git commit
+`52e14a18550ca4c88939d6818466c0781eff40f6`, Cloudflare deployment
+`ea489a1a-45fe-46e9-8f3a-ef691f16c83c`, at
+`https://vision-portfolio.pages.dev`. The build used Node.js `22.16.0`,
+generated static output without Functions, and published successfully.
+Responsive checks at approximately 320, 768, and 1440 px, the legacy gallery
+redirect, category filtering, viewer keyboard behavior, focus restoration,
+and console output all passed. Production HTML is revalidatable and omits
+the preview-only `X-Robots-Tag`; hashed Astro assets remain immutable.
+
 Custom-domain, DNS, canonical-host, and apex/`www` redirect work is explicitly
 deferred to a separate change after the `pages.dev` release is accepted.
 
@@ -99,6 +109,13 @@ For an application regression:
 
 If dashboard rollback is unavailable, revert the faulty commit first; the
 resulting successful `main` build becomes the new production deployment.
+
+Because this is the first accepted production deployment, there is no earlier
+accepted release to restore yet. Treat deployment
+`ea489a1a-45fe-46e9-8f3a-ef691f16c83c` and commit `52e14a1` as the rollback
+baseline for the next release. The Cloudflare deployment history and the Git
+history both expose these identifiers; do not restore the earlier
+`e60a337` deployment because its server-mode output returned 404 on Pages.
 
 Record any repository permission that prevents the quality workflow from
 being configured as a required branch-protection check. Until that permission

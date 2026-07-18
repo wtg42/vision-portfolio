@@ -27,6 +27,6 @@
 
 - [x] 5.1 Validate the preview URL at approximately 320 px, tablet, and desktop widths, including the root route, `/gallery` redirect, category query behavior, viewer open/close and navigation, keyboard focus, reduced motion, and console output.
 - [x] 5.2 Inspect preview response headers and network behavior to confirm immutable caching is limited to hashed Astro assets, document responses remain revalidatable, baseline protections are present, and the full-view photograph's throttled loading behavior is recorded.
-- [ ] 5.3 Merge only after the required checks and preview acceptance pass, then verify Cloudflare publishes the accepted `main` commit to the production `pages.dev` hostname.
-- [ ] 5.4 Repeat the critical route, interaction, responsive, header, and console checks on production and update the deployment documentation with the final hostname and verified settings.
-- [ ] 5.5 Confirm the documented Cloudflare rollback or Git revert path can identify and restore the preceding accepted deployment, and keep custom-domain and DNS work deferred to a separate follow-up change.
+- [x] 5.3 Merge only after the required checks and preview acceptance pass, then verify Cloudflare publishes the accepted `main` commit to the production `pages.dev` hostname.
+- [x] 5.4 Repeat the critical route, interaction, responsive, header, and console checks on production and update the deployment documentation with the final hostname and verified settings.
+- [x] 5.5 Confirm the documented Cloudflare rollback or Git revert path can identify and restore the preceding accepted deployment, and keep custom-domain and DNS work deferred to a separate follow-up change.
