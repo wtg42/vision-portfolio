@@ -18,9 +18,9 @@
 
 ## 4. GitHub and Cloudflare Integration
 
-- [ ] 4.1 Commit the deployment preparation on a non-production branch, push it to GitHub, and confirm the complete GitHub Actions quality workflow passes.
-- [ ] 4.2 Configure the workflow check as required for merges to `main` when repository permissions support branch protection; otherwise document the permission limitation and manual merge policy.
-- [ ] 4.3 Create a Git-integrated Cloudflare Pages project for `wtg42/vision-portfolio` using `main`, `npm run build`, and `dist`, with no adapter, Functions, bindings, runtime secrets, or Codex Sites configuration.
+- [x] 4.1 Commit the deployment preparation on a non-production branch, push it to GitHub, and confirm the complete GitHub Actions quality workflow passes.
+- [x] 4.2 Configure the workflow check as required for merges to `main` when repository permissions support branch protection; otherwise document the permission limitation and manual merge policy.
+- [x] 4.3 Create a Git-integrated Cloudflare Pages project for `wtg42/vision-portfolio` using `main`, `npm run build`, and `dist`, with no adapter, Functions, bindings, runtime secrets, or Codex Sites configuration.
 - [ ] 4.4 Record the assigned project name and preview URL, and confirm a non-production branch deployment does not replace production and returns preview `noindex` protection.
 
 ## 5. Hosted Acceptance and Production Launch
