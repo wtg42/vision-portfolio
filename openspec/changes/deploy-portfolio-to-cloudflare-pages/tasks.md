@@ -21,12 +21,12 @@
 - [x] 4.1 Commit the deployment preparation on a non-production branch, push it to GitHub, and confirm the complete GitHub Actions quality workflow passes.
 - [x] 4.2 Configure the workflow check as required for merges to `main` when repository permissions support branch protection; otherwise document the permission limitation and manual merge policy.
 - [x] 4.3 Create a Git-integrated Cloudflare Pages project for `wtg42/vision-portfolio` using `main`, `npm run build`, and `dist`, with no adapter, Functions, bindings, runtime secrets, or Codex Sites configuration.
-- [ ] 4.4 Record the assigned project name and preview URL, and confirm a non-production branch deployment does not replace production and returns preview `noindex` protection.
+- [x] 4.4 Record the assigned project name and preview URL, and confirm a non-production branch deployment does not replace production and returns preview `noindex` protection.
 
 ## 5. Hosted Acceptance and Production Launch
 
-- [ ] 5.1 Validate the preview URL at approximately 320 px, tablet, and desktop widths, including the root route, `/gallery` redirect, category query behavior, viewer open/close and navigation, keyboard focus, reduced motion, and console output.
-- [ ] 5.2 Inspect preview response headers and network behavior to confirm immutable caching is limited to hashed Astro assets, document responses remain revalidatable, baseline protections are present, and the full-view photograph's throttled loading behavior is recorded.
+- [x] 5.1 Validate the preview URL at approximately 320 px, tablet, and desktop widths, including the root route, `/gallery` redirect, category query behavior, viewer open/close and navigation, keyboard focus, reduced motion, and console output.
+- [x] 5.2 Inspect preview response headers and network behavior to confirm immutable caching is limited to hashed Astro assets, document responses remain revalidatable, baseline protections are present, and the full-view photograph's throttled loading behavior is recorded.
 - [ ] 5.3 Merge only after the required checks and preview acceptance pass, then verify Cloudflare publishes the accepted `main` commit to the production `pages.dev` hostname.
 - [ ] 5.4 Repeat the critical route, interaction, responsive, header, and console checks on production and update the deployment documentation with the final hostname and verified settings.
 - [ ] 5.5 Confirm the documented Cloudflare rollback or Git revert path can identify and restore the preceding accepted deployment, and keep custom-domain and DNS work deferred to a separate follow-up change.

@@ -8,7 +8,7 @@ runtime binding, secret, or Codex Sites configuration is required.
 
 | Setting | Value |
 | --- | --- |
-| Cloudflare project | `vision-portfolio` (desired; confirm availability) |
+| Cloudflare project | `vision-portfolio` |
 | GitHub repository | `wtg42/vision-portfolio` |
 | Production branch | `main` |
 | Root directory | `/` |
@@ -17,7 +17,7 @@ runtime binding, secret, or Codex Sites configuration is required.
 | Output directory | `dist` |
 | Node.js | `22.16.0` from `.node-version` |
 | Runtime variables | None |
-| Production hostname | Pending initial Pages deployment |
+| Production hostname | `https://vision-portfolio.pages.dev` (assigned; awaiting accepted `main` release) |
 
 Cloudflare's Git integration builds `main` for production and eligible
 non-production branches for previews. Pull requests should merge only after
@@ -68,6 +68,14 @@ For the branch or pull-request preview URL:
 6. Open the full-view photograph with browser network throttling and record
    its transferred size and loading time before approving any image-quality
    reduction.
+
+The accepted preview for commit `3722e29` was
+`https://0f45f54b.vision-portfolio.pages.dev`, with the branch alias
+`https://codex-deploy-cloudflare-page.vision-portfolio.pages.dev`. The
+full-view WebP transferred 90,962 bytes in 0.215 seconds during the recorded
+limited-rate request. HTML returned revalidation caching and
+`X-Robots-Tag: noindex`; the hashed Astro stylesheet returned immutable
+caching. The preview remained separate from the production alias.
 
 ## Production release
 
