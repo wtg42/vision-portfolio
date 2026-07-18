@@ -1,20 +1,20 @@
 ## 1. Repository Baseline
 
 - [x] 1.1 Audit the current working tree, confirm the redesigned application, `openspec/`, and project-local `.codex/` skills are intentional, and verify that no generated output, credentials, or unrelated local files will be committed.
-- [ ] 1.2 Preserve ignore rules for `dist`, `.astro`, `node_modules`, logs, and environment files, then create an intentional baseline commit containing the completed redesign and its planning records.
+- [x] 1.2 Preserve ignore rules for `dist`, `.astro`, `node_modules`, logs, and environment files, then create an intentional baseline commit containing the completed redesign and its planning records.
 
 ## 2. Reproducible Build and Quality Gate
 
-- [ ] 2.1 Add a repository-level Node.js 22 version declaration compatible with Astro's minimum version and matching `package.json` engine metadata.
-- [ ] 2.2 Add a GitHub Actions workflow that uses the pinned Node version, installs with `npm ci`, and runs `npm run check`, `npm test -- --run`, and `npm run build` for pull requests and `main`.
-- [ ] 2.3 Add static hosting headers that keep HTML revalidatable, apply immutable caching to `/_astro/*`, prevent MIME sniffing, use a conservative referrer policy, and disable unnecessary browser permissions without breaking the portfolio.
-- [ ] 2.4 Add deployment documentation covering the desired Pages project name, repository, production branch, build command, output directory, Node version, preview behavior, acceptance checklist, and rollback procedure.
+- [x] 2.1 Add a repository-level Node.js 22 version declaration compatible with Astro's minimum version and matching `package.json` engine metadata.
+- [x] 2.2 Add a GitHub Actions workflow that uses the pinned Node version, installs with `npm ci`, and runs `npm run check`, `npm test -- --run`, and `npm run build` for pull requests and `main`.
+- [x] 2.3 Add static hosting headers that keep HTML revalidatable, apply immutable caching to `/_astro/*`, prevent MIME sniffing, use a conservative referrer policy, and disable unnecessary browser permissions without breaking the portfolio.
+- [x] 2.4 Add deployment documentation covering the desired Pages project name, repository, production branch, build command, output directory, Node version, preview behavior, acceptance checklist, and rollback procedure.
 
 ## 3. Local Deployment Verification
 
-- [ ] 3.1 Run a clean `npm ci` followed by Astro check, the non-watch Vitest suite, and the production build, resolving every failure.
-- [ ] 3.2 Inspect `dist` to confirm the root and legacy gallery outputs exist, static headers are copied, no Cloudflare Worker or server entrypoint is generated, and every asset remains within the hosting size limit.
-- [ ] 3.3 Serve the production artifact locally and smoke-test the root page, recognized category query, legacy redirect, photo viewer, keyboard controls, and responsive layouts without browser errors or horizontal overflow.
+- [x] 3.1 Run a clean `npm ci` followed by Astro check, the non-watch Vitest suite, and the production build, resolving every failure.
+- [x] 3.2 Inspect `dist` to confirm the root and legacy gallery outputs exist, static headers are copied, no Cloudflare Worker or server entrypoint is generated, and every asset remains within the hosting size limit.
+- [x] 3.3 Serve the production artifact locally and smoke-test the root page, recognized category query, legacy redirect, photo viewer, keyboard controls, and responsive layouts without browser errors or horizontal overflow.
 
 ## 4. GitHub and Cloudflare Integration
 
