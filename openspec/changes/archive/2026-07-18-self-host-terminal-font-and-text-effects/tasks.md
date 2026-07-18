@@ -21,4 +21,4 @@
 - [x] 4.1 Add or update automated checks for semantic heading text, single accessible names, font configuration, local-only resource URLs, fallback tokens, and effect scoping.
 - [x] 4.2 Run Astro check, the non-watch test suite, and a clean production build; verify WOFF2-only output, combined payload at or below 150 KiB, minimal preload count, hashed font URLs, and no third-party font request.
 - [x] 4.3 Browser-test font loading and layout at approximately 320, 768, and 1440 px, including fallback-before-load behavior, Traditional Chinese copy, zoom, keyboard focus, photo viewer, reduced motion, unsupported-effect fallback, horizontal overflow, and console output.
-- [ ] 4.4 Validate the hosted preview's font response, immutable cache policy, layout stability, motion preference, and unchanged natural photograph rendering before production merge.
+- [x] 4.4 Validate the hosted preview's font response, immutable cache policy, layout stability, motion preference, and unchanged natural photograph rendering before production merge.

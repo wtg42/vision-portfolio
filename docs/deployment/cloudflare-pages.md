@@ -77,6 +77,17 @@ limited-rate request. HTML returned revalidation caching and
 `X-Robots-Tag: noindex`; the hashed Astro stylesheet returned immutable
 caching. The preview remained separate from the production alias.
 
+The photo-pipeline and self-hosted typography preview for commit `d883e4a` was
+`https://3f584f1c.vision-portfolio.pages.dev`, with the branch alias
+`https://codex-photo-pipeline-termina.vision-portfolio.pages.dev`. GitHub's
+Quality Gate and Cloudflare Pages checks both passed. The preview returned
+revalidatable, `noindex` HTML and immutable caching for hashed assets. Its
+normal 400 and 500 IBM Plex Mono WOFF2 responses used `font/woff2`, matched the
+committed SHA-256 hashes, totaled 99,648 bytes, and used one preload for the
+above-the-fold 500 face. Hosted CSS retained the solid feature fallback,
+reduced-motion animation freeze, and explicit natural-photo rules. The
+full-view WebP matched the committed 84,820-byte asset byte-for-byte.
+
 ## Production release
 
 Merge the accepted branch to `main`. Cloudflare Pages performs a clean build
