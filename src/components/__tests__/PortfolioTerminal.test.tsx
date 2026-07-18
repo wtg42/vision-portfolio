@@ -70,9 +70,11 @@ describe("terminal portfolio", () => {
   test("renders the terminal shell, sections, and optimized thumbnails", () => {
     const { container } = render(<PortfolioTerminal photos={photos} />);
 
-    expect(
-      screen.getByRole("heading", { name: /vision portfolio/i }),
-    ).toBeInTheDocument();
+    const identityHeadings = screen.getAllByRole("heading", {
+      name: /vision portfolio/i,
+    });
+    expect(identityHeadings).toHaveLength(1);
+    expect(identityHeadings[0]).toHaveTextContent("VISION PORTFOLIO");
     expect(screen.getByRole("link", { name: "./works" })).toHaveAttribute(
       "href",
       "#works",

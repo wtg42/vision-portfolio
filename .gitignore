@@ -7,6 +7,9 @@ dist/
 # dependencies
 node_modules/
 
+# local high-resolution photo staging
+photo-sources/
+
 # logs
 npm-debug.log*
 yarn-debug.log*

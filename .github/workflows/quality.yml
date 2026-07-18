@@ -39,5 +39,8 @@ jobs:
       - name: Run tests
         run: npm test -- --run
 
+      - name: Verify portfolio photo assets
+        run: npm run photos:verify
+
       - name: Build static site
         run: npm run build

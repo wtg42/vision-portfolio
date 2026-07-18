@@ -1,50 +1,24 @@
 ---
-import { getImage } from "astro:assets";
 import PortfolioTerminal from "../components/PortfolioTerminal";
 import { photos, type PhotoViewModel } from "../data/photos";
 import Layout from "../layouts/Layout.astro";
 
-const scaledHeight = (width: number, sourceWidth: number, sourceHeight: number) =>
-  Math.round((sourceHeight / sourceWidth) * width);
-
-const photoViewModels: PhotoViewModel[] = await Promise.all(
-  photos.map(async (photo) => {
-    const thumbnailWidth = Math.min(960, photo.image.width);
-    const fullWidth = Math.min(2200, photo.image.width);
-    const [thumbnail, full] = await Promise.all([
-      getImage({
-        src: photo.image,
-        width: thumbnailWidth,
-        format: "webp",
-        quality: 80,
-      }),
-      getImage({
-        src: photo.image,
-        width: fullWidth,
-        format: "webp",
-        quality: 88,
-      }),
-    ]);
-
-    const { image: _image, ...metadata } = photo;
+const photoViewModels: PhotoViewModel[] = photos.map(
+  ({ thumbnail, full, ...metadata }) => {
     return {
       ...metadata,
       thumbnail: {
         src: thumbnail.src,
-        width: thumbnailWidth,
-        height: scaledHeight(
-          thumbnailWidth,
-          photo.image.width,
-          photo.image.height,
-        ),
+        width: thumbnail.width,
+        height: thumbnail.height,
       },
       full: {
         src: full.src,
-        width: fullWidth,
-        height: scaledHeight(fullWidth, photo.image.width, photo.image.height),
+        width: full.width,
+        height: full.height,
       },
     };
-  }),
+  },
 );
 ---
 
