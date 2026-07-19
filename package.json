@@ -10,6 +10,8 @@
     "build": "astro build",
     "check": "astro check",
     "photos:optimize": "node scripts/optimize-photo.mjs",
+    "photos:process": "node scripts/process-photo.mjs",
+    "photos:status": "node scripts/photo-status.mjs",
     "photos:verify": "node scripts/verify-photos.mjs",
     "preview": "astro preview",
     "astro": "astro",

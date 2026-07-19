@@ -50,7 +50,7 @@ const prohibitedSourcePattern =
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const forbiddenMetadataFields = ["exif", "iptc", "xmp"];
 
-const pathExists = async (target) => {
+export const pathExists = async (target) => {
   try {
     await stat(target);
     return true;
@@ -60,7 +60,7 @@ const pathExists = async (target) => {
   }
 };
 
-const inspectWebp = async (filePath, variant) => {
+export const inspectWebp = async (filePath, variant) => {
   const [metadata, fileStat] = await Promise.all([
     sharp(filePath).metadata(),
     stat(filePath),
@@ -115,13 +115,11 @@ export const ensurePhotoSourceDirectory = () =>
  * @param {string} options.inputPath
  * @param {string} options.slug
  * @param {string} [options.destinationRoot]
- * @param {(report: Record<string, unknown>) => void | Promise<void>} [options.beforeCommit]
  */
-export const optimizePhoto = async ({
+export const preparePhotoDerivatives = async ({
   inputPath,
   slug,
   destinationRoot = PORTFOLIO_DIRECTORY,
-  beforeCommit = undefined,
 }) => {
   assertPhotoSlug(slug);
 
@@ -145,10 +143,6 @@ export const optimizePhoto = async ({
   const temporaryDirectory = path.join(
     destinationRoot,
     `.${slug}.tmp-${randomUUID()}`,
-  );
-  const backupDirectory = path.join(
-    destinationRoot,
-    `.${slug}.backup-${randomUUID()}`,
   );
 
   await mkdir(temporaryDirectory);
@@ -191,11 +185,46 @@ export const optimizePhoto = async ({
       outputs,
     };
 
+    return {
+      report,
+      destinationDirectory,
+      temporaryDirectory,
+    };
+  } catch (error) {
+    await rm(temporaryDirectory, { recursive: true, force: true });
+    throw error;
+  }
+};
+
+export const discardPreparedPhotoDerivatives = async (prepared) => {
+  if (prepared?.temporaryDirectory) {
+    await rm(prepared.temporaryDirectory, { recursive: true, force: true });
+  }
+};
+
+/**
+ * @param {Awaited<ReturnType<typeof preparePhotoDerivatives>>} prepared
+ * @param {object} [options]
+ * @param {(report: Record<string, unknown>) => void | Promise<void>} [options.beforeCommit]
+ */
+export const commitPreparedPhotoDerivatives = async (
+  prepared,
+  { beforeCommit = undefined } = {},
+) => {
+  const { report, destinationDirectory, temporaryDirectory } = prepared;
+  const destinationRoot = path.dirname(destinationDirectory);
+  const backupDirectory = path.join(
+    destinationRoot,
+    `.${report.slug}.backup-${randomUUID()}`,
+  );
+  let hadDestination = false;
+
+  try {
     if (beforeCommit) {
       await beforeCommit(report);
     }
 
-    const hadDestination = await pathExists(destinationDirectory);
+    hadDestination = await pathExists(destinationDirectory);
     if (hadDestination) {
       await rename(destinationDirectory, backupDirectory);
     }
@@ -217,7 +246,7 @@ export const optimizePhoto = async ({
       ...report,
       destinationDirectory,
       outputs: Object.fromEntries(
-        Object.entries(outputs).map(([name, output]) => [
+        Object.entries(report.outputs).map(([name, output]) => [
           name,
           {
             ...output,
@@ -230,8 +259,9 @@ export const optimizePhoto = async ({
       ),
     };
   } catch (error) {
-    await rm(temporaryDirectory, { recursive: true, force: true });
+    await discardPreparedPhotoDerivatives(prepared);
     if (
+      hadDestination &&
       (await pathExists(backupDirectory)) &&
       !(await pathExists(destinationDirectory))
     ) {
@@ -239,6 +269,27 @@ export const optimizePhoto = async ({
     }
     throw error;
   }
+};
+
+/**
+ * @param {object} options
+ * @param {string} options.inputPath
+ * @param {string} options.slug
+ * @param {string} [options.destinationRoot]
+ * @param {(report: Record<string, unknown>) => void | Promise<void>} [options.beforeCommit]
+ */
+export const optimizePhoto = async ({
+  inputPath,
+  slug,
+  destinationRoot = PORTFOLIO_DIRECTORY,
+  beforeCommit = undefined,
+}) => {
+  const prepared = await preparePhotoDerivatives({
+    inputPath,
+    slug,
+    destinationRoot,
+  });
+  return commitPreparedPhotoDerivatives(prepared, { beforeCommit });
 };
 
 const runGit = (projectRoot, args) =>
